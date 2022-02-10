@@ -6,6 +6,9 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+// const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'https://ty8omrsmwa.execute-api.eu-west-1.amazonaws.com/dev/';
+
 const RandomWordPos = () => {
   const navigate = useNavigate();
   const [pos, setPos] = useState('');
@@ -22,7 +25,7 @@ const RandomWordPos = () => {
     setWordDefinition(null);
     // const wordWithoutDot = searchWord.replace(/[^a-zA-Z ]/g, '');
     let response;
-    response = await axios.get(`http://localhost:3000/part-of-speech/${searchWord}`);
+    response = await axios.get(`${BASE_URL}part-of-speech/${searchWord}`);
     navigate(`/random-word-pos/${searchWord}`);
     setWordDefinition(response.data);
   };

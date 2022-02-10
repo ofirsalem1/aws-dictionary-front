@@ -4,32 +4,39 @@ import { useNavigate, useParams } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import { ToastContainer, toast } from 'react-toastify';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { WordInterface } from '../types/wordForm.type';
+import WordDisplay from './WordDisplay';
+
+// const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'https://ty8omrsmwa.execute-api.eu-west-1.amazonaws.com/dev/';
 
 const Word = () => {
-  const [pos, setPos] = useState('');
-  const navigate = useNavigate();
-  const [wordDefinition, setWordDefinition] = useState<[Object] | null>(null);
-  const { word } = useParams();
+  const [pos, setPos] = useState<string>(''); // optional to choose part of speech
+  const [wordDefinition, setWordDefinition] = useState<WordInterface[] | null>(null); //response from API
   const [searchInput, setSearchInput] = useState<string>('');
+  const { word } = useParams();
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (word) {
-      getWord(word);
+      getWordDefinition(word);
     }
   }, []);
 
-  const getWord = async (searchWord: string) => {
-    setWordDefinition(null);
-    const wordWithoutDot = searchWord.replace(/[^a-zA-Z ]/g, '');
+  const getWordDefinition = async (searchWord: string) => {
+    setWordDefinition(null); // clear previous word definition
+    const wordWithoutSymbols = searchWord.replace(/[^a-zA-Z ]/g, ''); // remove symbols from the word
     let response;
     if (pos === '') {
-      response = await axios.get(`http://localhost:3000/${wordWithoutDot}`);
+      response = await axios.get(`${BASE_URL}${wordWithoutSymbols}`);
     } else {
-      response = await axios.get(`http://localhost:3000/${wordWithoutDot}/${pos}`);
+      response = await axios.get(`${BASE_URL}${wordWithoutSymbols}/${pos}`);
     }
-    navigate(`/word/${wordWithoutDot}`);
+    navigate(`/word/${wordWithoutSymbols}`); // navigate to the word page
+    // if no definition found
     if (response.data.length === 0) {
       toast.error('The word does not exist !', {
         position: 'top-right',
@@ -43,7 +50,9 @@ const Word = () => {
     }
     setWordDefinition(response.data);
   };
-  const handleChange = (event: any) => {
+
+  // if part of speech is selected
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
     setPos(event.target.value);
   };
 
@@ -53,7 +62,7 @@ const Word = () => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          getWord(searchInput);
+          getWordDefinition(searchInput);
         }}
       >
         <input
@@ -63,12 +72,11 @@ const Word = () => {
           onChange={e => setSearchInput(e.target.value)}
           required
         />
-        <br />
         <FormControl sx={{ m: 1, minWidth: 120 }}>
           <FormHelperText>Choose Part Of Speech</FormHelperText>
           <Select
             value={pos}
-            onChange={handleChange}
+            onChange={handleSelectChange}
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
           >
@@ -85,41 +93,11 @@ const Word = () => {
             <MenuItem value={'conjunctions'}>Conjunctions</MenuItem>
           </Select>
         </FormControl>
-
         <br />
+
         <button className="btn-search">Search</button>
       </form>
-      {!wordDefinition && (
-        <div>
-          <span className="loader"> </span>
-        </div>
-      )}
-      {wordDefinition &&
-        wordDefinition.map((word: any, i: number) => {
-          return (
-            <div className="definition-div" key={i}>
-              <h3>
-                {word.word}, {word.pos}
-              </h3>
-              {word.definitions.map((definition: string, i: number) => {
-                const definitionArr = definition.split(' ');
-                return (
-                  <p key={i}>
-                    {i + 1}:
-                    {definitionArr.map((definitionWord: string, i: number) => {
-                      return (
-                        <span key={i} onClick={() => getWord(definitionWord)}>
-                          {definitionWord}{' '}
-                        </span>
-                      );
-                    })}
-                  </p>
-                );
-              })}
-            </div>
-          );
-        })}
-      <ToastContainer position="top-right" autoClose={4000} hideProgressBar={false} rtl={false} />
+      <WordDisplay wordDefinition={wordDefinition} getWordDefinition={getWordDefinition} />
     </div>
   );
 };

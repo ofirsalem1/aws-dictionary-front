@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import NavBar from './NavBar';
-import Word from './Word';
+import Word from './WordForm';
 import RandomWordPos from './RandomWordPos';
 import RandomWordPosStartWith from './RandomWordPosStartWith';
-
-// const BASE_URL = 'https://ty8omrsmwa.execute-api.eu-west-1.amazonaws.com/dev';
 
 function App() {
   return (
