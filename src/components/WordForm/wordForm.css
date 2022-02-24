@@ -30,5 +30,9 @@
 }
 
 .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
-  color: white;
+  color: white !important;
+}
+
+.css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
+  color: white !important;
 }
