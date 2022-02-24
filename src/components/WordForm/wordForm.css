@@ -1,0 +1,34 @@
+.search-input {
+  color: #fff;
+  height: 50px;
+  background-color: inherit;
+  border-radius: 15px;
+  border: white solid 2px;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 7rem;
+  font-size: 1.1rem;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-search {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  background-color: inherit;
+  border: white solid 2px;
+  border-radius: 15px;
+  width: 10rem;
+}
+
+.btn-search:active {
+  transform: translateY(4px);
+}
+
+.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+  color: white;
+}

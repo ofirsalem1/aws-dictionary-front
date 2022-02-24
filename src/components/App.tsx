@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import NavBar from './NavBar';
-import Word from './WordForm';
+import Word from './WordForm/WordForm';
 import RandomWordPos from './RandomWordPos';
 import RandomWordPosStartWith from './RandomWordPosStartWith';
 
