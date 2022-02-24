@@ -43,12 +43,23 @@ const RandomWordPos = () => {
         }}
       >
         <FormControl sx={{ m: 1, minWidth: 120 }}>
-          <FormHelperText>Choose Part Of Speech</FormHelperText>
+          <FormHelperText
+            sx={{ color: 'white', fontSize: '1rem', 'white-space': 'nowrap', margin: '0 auto' }}
+          >
+            Part Of Speech:
+          </FormHelperText>
           <Select
             value={pos}
             onChange={handleChange}
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
+            sx={{
+              color: 'white',
+              border: 'white solid 2px',
+              'border-radius': '15px',
+              width: '10rem',
+              margin: '0 auto',
+            }}
           >
             <MenuItem value={'adjectives'}>Adjectives</MenuItem>
             <MenuItem value={'adverbs'}>Adverbs</MenuItem>
@@ -70,13 +81,14 @@ const RandomWordPos = () => {
         </div>
       )}
       {wordDefinition && (
-        <div className="definition-div">
+        <div className="definitions-div">
           <h3>
             {wordDefinition.word}, {wordDefinition.pos}
           </h3>
           {wordDefinition.definitions.map((definition: string, i: number) => {
             return (
               <p key={i}>
+                <hr />
                 {i + 1}: {definition}
               </p>
             );

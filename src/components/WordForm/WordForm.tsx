@@ -9,7 +9,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { WordInterface } from '../../types/wordForm.type';
-import WordDisplay from '../WordDisplay';
+import WordDisplay from '../WordDIsplay/WordDisplay';
 
 // const BASE_URL = 'http://localhost:3000/';
 const BASE_URL = 'https://ty8omrsmwa.execute-api.eu-west-1.amazonaws.com/dev/';
