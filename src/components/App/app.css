@@ -7,4 +7,9 @@
   max-width: 30rem;
   margin: 0 auto;
   min-width: 20rem;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 2em;
+  letter-spacing: -1px;
+  background-color: black;
+  color: white;
 }
