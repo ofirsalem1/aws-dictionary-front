@@ -1,0 +1,14 @@
+.header {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 2em;
+  letter-spacing: -1px;
+  background-color: black;
+  color: white;
+}
+ul {
+  text-align: left;
+  list-style-type: circle;
+}
+li {
+  margin-top: 1rem;
+}

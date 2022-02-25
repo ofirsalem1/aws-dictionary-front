@@ -4,4 +4,7 @@
   align-items: center;
   flex-direction: row;
   width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  min-width: 20rem;
 }

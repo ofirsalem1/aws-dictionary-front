@@ -1,5 +1,4 @@
-import React from 'react';
-
+import './homePage.css';
 const HomePage = () => {
   return (
     <div className="homepage-div">
@@ -9,7 +8,7 @@ const HomePage = () => {
         <li>Word</li>
         <li>Word with a specific part of speech</li>
         <li>A random word from a specific part of speech</li>
-        <li>A random word from a specific part of speech and letter begin with</li>
+        {/* <li>A random word from a specific part of speech and letter begin with</li> */}
       </ul>
     </div>
   );

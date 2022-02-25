@@ -1,6 +1,6 @@
 import './app.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from '../HomePage';
+import HomePage from '../HomePage/HomePage';
 import NavBar from '../NavBar';
 import Word from '../WordForm/WordForm';
 import RandomWordPos from '../RandomWordPos';
